@@ -5,6 +5,7 @@ import { WithContext as ReactTags } from 'react-tag-input';
 import axios from 'axios';
 import { Zoom } from 'react-reveal';
 import '../styles/Survey.css';
+axios.defaults.baseURL = 'https://backend-dot-grads-coding-challenge-group-6.uc.r.appspot.com/';
 
 const Rating = (props) => {
 
