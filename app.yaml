@@ -1,2 +1,2 @@
 runtime: java11
-service: spring
+instance_class: F2
