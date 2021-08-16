@@ -1,7 +1,7 @@
 steps:
 #Installing
 - name: 'gcr.io/cloud-builders/npm'
-  args: ['install','react-scripts', '--save']
+  args: ['install', '--save']
  
 #Building
 - name: 'gcr.io/cloud-builders/npm'
