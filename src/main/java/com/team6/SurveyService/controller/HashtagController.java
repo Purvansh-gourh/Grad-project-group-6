@@ -32,7 +32,7 @@ public class HashtagController {
 
 	
 //	get all hashtags orderby count
-	@GetMapping("/dashboard/hashtags")
+	@GetMapping(produces = "application/json",path = "/dashboard/hashtags")
 	public ResponseEntity<?> getAllHashtags(){
 		List<String> surveyList = hashtagService.getTrendingHashtags();
 		return ResponseEntity.status(HttpStatus.OK).body(surveyList);

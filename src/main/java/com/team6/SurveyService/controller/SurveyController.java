@@ -21,20 +21,20 @@ public class SurveyController {
 	private SurveyService surveyService;
 		
 	
-	@PostMapping("/survey")
+	@PostMapping(produces = "application/json",path = "/survey")
 	public ResponseEntity<?> saveSurvey(@RequestBody Survey survey){
 		surveyService.addSurvey(survey);
 		return ResponseEntity.status(HttpStatus.CREATED).body(survey);
 	}
 
 	//	get all response
-	@GetMapping("/dashboard/survey")
+	@GetMapping(produces = "application/json",path = "/dashboard/survey")
 	public ResponseEntity<?> getAllSurvey(){
 		List<Survey> surveyList = surveyService.getAllSurvey();
 		return ResponseEntity.status(HttpStatus.OK).body(surveyList);
 	}
 
-	@GetMapping("/dashboard/survey/latestAvg/{days}")
+	@GetMapping(produces = "application/json",path = "/dashboard/survey/latestAvg/{days}")
 	public ResponseEntity<?> getLatestAvg(@PathVariable("days") int days){
 		List<List<String>> latestAvgRating = surveyService.getLatestAvg(days);
 		ObjectNode objectNode = new ObjectMapper().createObjectNode();
@@ -43,20 +43,20 @@ public class SurveyController {
 		return ResponseEntity.status(HttpStatus.OK).body(objectNode);
 	}
 	//	search survey response by email
-	@GetMapping("/dashboard/survey/{email}")
+	@GetMapping(produces = "application/json",path = "/dashboard/survey/{email}")
 	public ResponseEntity<?> getByEmail(@PathVariable("email") String email){
 		List<Survey> listByEmail = surveyService.getByEmail(email);
 		return ResponseEntity.status(HttpStatus.OK).body(listByEmail);
 	}
 
 	//	get complete response of last X days
-	@GetMapping("/dashboard/survey/latestData/{days}")
+	@GetMapping(produces = "application/json",path = "/dashboard/survey/latestData/{days}")
 	public ResponseEntity<?> getLatestData(@PathVariable("days") int days){
 		List<Survey> latestData = surveyService.getLatestData(days);
 		return ResponseEntity.status(HttpStatus.OK).body(latestData);
 	}
 
-	@GetMapping("/dashboard/survey/avgCategoriesRating/{days}")
+	@GetMapping(produces = "application/json",path = "/dashboard/survey/avgCategoriesRating/{days}")
 	public ResponseEntity<?> getAvgCategoriesRating(@PathVariable("days") int days){
 		List<List<String>> avgCategoriesRating = surveyService.getAvgCategoriesRating(days);
 		ObjectNode objectNode = new ObjectMapper().createObjectNode();
@@ -66,7 +66,7 @@ public class SurveyController {
 	}
 
 
-	@GetMapping("/dashboard/survey/badMoodSince/{days}")
+	@GetMapping(produces = "application/json",path = "/dashboard/survey/badMoodSince/{days}")
 	public ResponseEntity<?> getBadMoodEmployee(@PathVariable("days") int days){
 		List<List<String>> badMoodEmployee = surveyService.getBadMoodEmployee(days);
 		ObjectNode objectNode = new ObjectMapper().createObjectNode();
