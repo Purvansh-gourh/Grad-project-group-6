@@ -1,3 +1,4 @@
+service: backend
 runtime: java11
 env: standard
 runtime_config:
@@ -5,7 +6,7 @@ runtime_config:
 env_variables:
   SPRING_PROFILES_ACTIVE: "production"
 handlers:
-- url: /api/.*
+- url: /.*
   script: this field is required, but ignored
 manual_scaling:
   instances: 1
