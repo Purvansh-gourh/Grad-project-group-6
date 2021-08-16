@@ -1,4 +1,3 @@
 steps:
 - name: gcr.io/cloud-builders/gcloud
-  entrypoint: 'bash'
-  args: ['-c','gcloud app deploy --version=app app.yaml']
+  args: ['app','deploy','pom.xml']
