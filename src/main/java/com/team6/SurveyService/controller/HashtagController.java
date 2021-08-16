@@ -19,6 +19,7 @@ import com.team6.SurveyService.service.SurveyService;
 
 
 @RestController()
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api")
 public class HashtagController {
 
