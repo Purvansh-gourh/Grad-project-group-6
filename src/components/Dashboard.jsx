@@ -8,6 +8,7 @@ import CountUp from 'react-countup';
 import SurveyDataTable from './SurveyDataTable';
 import _ from 'lodash';
 import { Slide, Zoom } from 'react-reveal';
+axios.defaults.baseURL = 'https://backend-dot-grads-coding-challenge-group-6.uc.r.appspot.com/';
 
 const BoxesContainer = (props) => {
   // const defaultData = props.defaultData;
