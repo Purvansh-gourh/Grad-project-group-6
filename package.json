@@ -2,7 +2,7 @@
   "name": "employee_mood_ui",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://grads-coding-challenge-group-6.uc.r.appspot.com",
+  "proxy": "https://20210816t124743-dot-grads-coding-challenge-group-6.uc.r.appspot.com",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
