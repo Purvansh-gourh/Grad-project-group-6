@@ -15,7 +15,8 @@ import com.team6.SurveyService.dto.SurveyId;
 public interface SurveyRepository extends JpaRepository<Survey, SurveyId> {
 	
 //	@Query(value = "SELECT s.mood_rating FROM survey_tb1 s where s.time_stamp>= CURDATE()-?1 group by day(s.time_stamp)",nativeQuery = true)
-	@Query("SELECT date(s.id.timeStamp),avg(s.moodRating) from survey s where DAY(s.id.timeStamp)>= (DAY(CURRENT_TIMESTAMP)- ?1) group by(DATE(s.id.timeStamp))")
+	//SELECT date(s.time_stamp),s.mood_rating FROM survey_tb1 s where s.time_stamp>= CURDATE()-1 group by date(s.time_stamp) order by date(s.time_stamp);
+	@Query("SELECT date(s.id.timeStamp),avg(s.moodRating) from survey s where DAY(s.id.timeStamp)>= (DAY(CURRENT_TIMESTAMP)- ?1) group by(DATE(s.id.timeStamp)) order by (date(s.id.timeStamp))")
 	public List<List<String>> getLatestAvg(int days);
 	
 	@Query(value="Select * from survey_tb1 s where s.email=?1",nativeQuery = true)

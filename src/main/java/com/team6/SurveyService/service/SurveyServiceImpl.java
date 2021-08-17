@@ -1,5 +1,6 @@
 package com.team6.SurveyService.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -46,13 +47,19 @@ public class SurveyServiceImpl implements SurveyService {
 	@Override
 	public Survey addSurvey(Survey survey) {
 		// TODO Auto-generated method stub
-		String reason = survey.getReason();
+		List<String> result=new ArrayList<>();
+		try{
+			String reason = survey.getReason();
+			System.out.println("Reason="+reason);
+			result = new HashtagUtil().getHashTagsFromReason(reason);
+		}
+		catch(Exception e){
+			System.out.println("-----Reason is empty-----");
+			e.printStackTrace();
+		}
 
-//		function To seperate hashtags and reason
-		List<String> result = new HashtagUtil().getHashTagsFromReason(reason);
-		
 		result.addAll(Arrays.asList(survey.getHashtag().split(",")));
-		
+
 		for(String hashtag: result) {
 			try{
 				Hashtags hashtags=findById(hashtag);
