@@ -5,7 +5,8 @@ import { WithContext as ReactTags } from 'react-tag-input';
 import axios from 'axios';
 import { Zoom } from 'react-reveal';
 import '../styles/Survey.css';
-axios.defaults.baseURL = 'https://backend-dot-grads-coding-challenge-group-6.uc.r.appspot.com/';
+import { baseURL } from "../Config";
+axios.defaults.baseURL = baseURL;
 
 const Rating = (props) => {
 
@@ -112,6 +113,12 @@ function Survey() {
     const handleFormSubmit = (e) => {
         e.preventDefault();
         let finalData = Object.assign({}, data);
+        const reEm = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!reEm.test(String(finalData.id.email).toLowerCase())) {
+            setError({ type: "danger", message: "Invalid Email address" });
+            window.scroll(0, 0);
+            return
+        }
         if (!finalData.id.email) {
             setError({ type: "danger", message: "Email Id is required" });
             window.scroll(0, 0);
@@ -120,7 +127,10 @@ function Survey() {
 
         let hashString = "";
         finalData.hashtag.forEach((tag, index) => {
-            hashString = hashString.concat("#" + tag.text + ",");
+            if (tag.text.charAt(0) === "#")
+                tag.text = tag.substring(1);
+            if(tag.text.length > 0)
+                hashString = hashString.concat("#" + tag.text + ",");
         })
         finalData.hashtag = hashString.substring(0, hashString.length - 1);
         console.log(finalData);
@@ -136,7 +146,7 @@ function Survey() {
                     hashtag: [],
                     reason: "",
                 })
-                setError({ type: "success", message: "Survey submitted successfully" });
+                setError({ type: "success", message: "Survey submitted successfully. View results in " });
                 window.scroll(0, 0);
             })
             .catch((err) => {
@@ -155,7 +165,10 @@ function Survey() {
                                 <Card className="p-4 survey-card">
                                     <Card.Body>
                                         {
-                                            error && error.type ? <Alert variant={error.type}>{error.message}</Alert> : ""
+                                            error && error.type ? <Alert variant={error.type}>
+                                                {error.message}
+                                                {error.type === "success" ? <a href='/dashboard'>Dashboard</a>:""}
+                                            </Alert> : ""
                                         }
                                         <h4 className="text-center mb-3">How's your mood today ?</h4>
                                         <Form>

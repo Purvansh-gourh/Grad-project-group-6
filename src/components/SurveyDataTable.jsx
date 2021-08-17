@@ -4,7 +4,8 @@ import { Button, Card, Dropdown, DropdownButton, FormControl, InputGroup, Table 
 import "../styles/Dashboard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp, faArrowDown, faSearch } from '@fortawesome/free-solid-svg-icons';
-axios.defaults.baseURL = 'https://backend-dot-grads-coding-challenge-group-6.uc.r.appspot.com/';
+import { baseURL } from "../Config";
+axios.defaults.baseURL = baseURL;
 
 const MainTable = (props) => {
     const [sortByField, setSortByField] = React.useState("email");

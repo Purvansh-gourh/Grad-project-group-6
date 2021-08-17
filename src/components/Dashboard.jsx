@@ -8,7 +8,8 @@ import CountUp from 'react-countup';
 import SurveyDataTable from './SurveyDataTable';
 import _ from 'lodash';
 import { Slide, Zoom } from 'react-reveal';
-axios.defaults.baseURL = 'https://backend-dot-grads-coding-challenge-group-6.uc.r.appspot.com/';
+import { baseURL } from "../Config";
+axios.defaults.baseURL = baseURL;
 
 const BoxesContainer = (props) => {
   // const defaultData = props.defaultData;
@@ -35,7 +36,7 @@ const BoxesContainer = (props) => {
               <Col lg={5} xs={10} className='p-4 m-2 box-2 box'>
                 <h5>Trending Hashtags</h5>
                 <div>
-                  {trendingHashTags.map((tag, index) => {
+                  {trendingHashTags && trendingHashTags.map((tag, index) => {
                     return (<Button variant="secondary" size="sm" className="m-1" key={index}>{tag}</Button>)
                   })}
                 </div>
@@ -192,7 +193,7 @@ export default function Dashboard() {
   const [error, setError] = React.useState();
 
   React.useEffect(() => {
-    const timer = setTimeout(() => setAnalysing(false), 5000)
+    const timer = setTimeout(() => setAnalysing(false), 7000)
     return () => { clearTimeout(timer) }
   }, [])
 
